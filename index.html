@@ -15,55 +15,59 @@
   }
   *{box-sizing:border-box}
   html,body{margin:0; padding:0; background:var(--paper); color:var(--ink);}
-  body{font:16px/1.5 system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;}
+  body{font:16px/1.5 system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;}
 
-  /* Header with centered logo */
+  /* Header */
   header{
-    padding:18px 0; border-bottom:1px solid #eee; background:#fff;
-    position:sticky; top:0; z-index:10;
+    padding:12px 0 0; border-bottom:1px solid #eee; background:#fff;
+    position:sticky; top:0; z-index:20;
   }
-  .brand{
-    display:flex; justify-content:center; align-items:center;
+  .brand{display:flex; justify-content:center; align-items:center;}
+  .site-logo{height:200px; width:auto; display:block; /* 2× size */ }
+
+  /* Quick links nav */
+  .quicklinks{
+    display:flex; gap:10px; overflow:auto; -webkit-overflow-scrolling:touch;
+    padding:10px 12px 14px; background:#fff;
   }
-  .site-logo{
-    height:100px; /* adjust logo size here */
-    width:auto;
-    display:block;
+  .quicklinks a{
+    white-space:nowrap; text-decoration:none; color:#000; background:#fff; border:1px solid #eee;
+    padding:8px 12px; border-radius:999px; font-weight:700;
   }
+  .quicklinks a.primary{ background:var(--pink); border-color:var(--pink-deep); }
 
   /* Layout */
-  .wrap{max-width:1100px; margin:0 auto; padding:14px 16px 90px;}
+  .wrap{max-width:1100px; margin:0 auto; padding:14px 16px 110px;}
   .hero{display:grid; gap:12px; margin-top:8px;}
-  .panel{
-    background:#fff; border:1px solid #eee; border-radius:14px; padding:14px;
-  }
+  .panel{background:#fff; border:1px solid #eee; border-radius:14px; padding:14px;}
   .panel h2{margin:0 0 8px; font-size:1.05rem}
-  .notice{
-    background:#fff0f5; border:1px dashed var(--pink-deep);
-    padding:10px 12px; border-radius:10px; font-size:.95rem;
+  .notice{background:#fff0f5; border:1px dashed var(--pink-deep); padding:10px 12px; border-radius:10px; font-size:.95rem;}
+
+  /* Section headings */
+  h2.section-title{
+    margin:18px 0 10px;
+    font-size:1.15rem; /* larger section titles */
+    line-height:1.25;
   }
 
-  /* Product grid */
-  .grid{display:grid; gap:12px; margin-top:14px; grid-template-columns:1fr;}
+  /* Product grid/cards */
+  .grid{display:grid; gap:12px; grid-template-columns:1fr;}
   @media (min-width:560px){ .grid{grid-template-columns:repeat(2,1fr);} }
   @media (min-width:900px){ .grid{grid-template-columns:repeat(3,1fr);} }
 
   .card{background:#fff; border:1px solid #eee; border-radius:14px; overflow:hidden; display:flex; flex-direction:column}
   .card img{width:100%; aspect-ratio: 4/3; object-fit:cover; display:block}
   .meta{padding:12px}
-  .name{font-weight:700}
+  .name{font-weight:800; font-size:1.05rem;} /* larger product titles */
   .price{color:#444; margin-top:2px}
   .opts{display:flex; gap:10px; align-items:center; margin-top:10px}
   .qty{display:flex; align-items:center; gap:8px; border:1px solid #eee; border-radius:12px; padding:8px 10px;}
   .qty button{border:0; background:#f5f5f5; width:36px; height:36px; border-radius:10px; cursor:pointer; font-size:18px;}
-  .add{margin-left:auto; border:0; background:var(--pink-deep); color:#fff;
-    padding:10px 14px; border-radius:12px; cursor:pointer; font-weight:700; min-width:110px;}
+  .add{margin-left:auto; border:0; background:var(--pink-deep); color:#fff; padding:10px 14px; border-radius:12px; cursor:pointer; font-weight:700; min-width:110px;}
 
   /* Sticky Cart bar */
-  .cartbar{position:fixed; left:0; right:0; bottom:0; z-index:20;
-    background:#fff; border-top:1px solid #eee;
-    padding:10px 14px; display:flex; align-items:center; gap:12px;
-    box-shadow:0 -6px 20px #0001;}
+  .cartbar{position:fixed; left:0; right:0; bottom:0; z-index:25; background:#fff; border-top:1px solid #eee;
+    padding:10px 14px; display:flex; align-items:center; gap:12px; box-shadow:0 -6px 20px #0001;}
   .cartbadge{background:var(--pink); color:#000; font-weight:700; padding:6px 10px; border-radius:999px; min-width:34px; text-align:center;}
   .cartsum{flex:1; min-width:0}
   .cartsum .t{display:block; font-size:.9rem; color:#666; line-height:1.2}
@@ -72,9 +76,8 @@
   .checkout-btn:disabled{opacity:.5}
 
   /* Drawer */
-  .drawer{position:fixed; left:0; right:0; bottom:0; z-index:50;
-    background:#fff; border-top-left-radius:16px; border-top-right-radius:16px;
-    transform:translateY(100%); transition:transform .28s ease-out;
+  .drawer{position:fixed; left:0; right:0; bottom:0; z-index:50; background:#fff;
+    border-top-left-radius:16px; border-top-right-radius:16px; transform:translateY(100%); transition:transform .28s ease-out;
     box-shadow:0 -14px 40px #0003; max-height:85vh; display:flex; flex-direction:column;}
   .drawer.open{transform:translateY(0)}
   .drawer .grab{width:48px; height:5px; background:#ddd; border-radius:999px; margin:8px auto 6px;}
@@ -97,16 +100,39 @@
   .qr img{max-width:200px; height:auto; display:block; margin:0 auto 6px}
   .muted{color:#666; font-size:.9rem}
   .drawer-footer{padding:12px 14px 20px; border-top:1px solid #eee; color:#666; font-size:.9rem}
+
+  /* Category anchors offset so headings aren't hidden under sticky header */
+  .anchor{
+    position:relative; top:-90px; /* approximate header+nav height */
+    visibility:hidden;
+  }
 </style>
 </head>
 <body>
+
+  <!-- Header -->
   <header>
     <div class="brand">
       <img src="logo.png" alt="Steph Marie’s Bakehouse Logo" class="site-logo" />
     </div>
+
+    <!-- Quick link categories -->
+    <nav class="quicklinks">
+      <a class="primary" href="#thisweeks">THIS WEEKS ITEMS</a>
+      <a href="#bagels">Bagels</a>
+      <a href="#bakedbars">Baked Bars</a>
+      <a href="#bread">Bread</a>
+      <a href="#brownies">Brownies</a>
+      <a href="#cinnamonrolls">Cinnamon Rolls</a>
+      <a href="#cookies">Cookies</a>
+      <a href="#muffins">Muffins</a>
+      <a href="#pies">Pies</a>
+      <a href="#scones">Scones</a>
+    </nav>
   </header>
 
   <div class="wrap">
+    <!-- Info panels -->
     <section class="hero">
       <div class="panel">
         <h2>How pre-orders work</h2>
@@ -122,71 +148,226 @@
       </div>
       <div class="panel">
         <h2>This week’s pickup</h2>
-        <p>Enter your preferred pickup at checkout. We’ll confirm by text.</p>
         <ul style="margin:8px 0 0; padding-left:18px">
-          <li><strong>Location:</strong> <span id="pickupLocation">Downtown farmer’s market booth</span></li>
-          <li><strong>Window:</strong> <span id="pickupWindow">Sat 9:00a–12:00p</span></li>
+          <li><strong>Location:</strong> 3820 47th Ave NE, Tacoma, WA 98422</li>
+          <li><strong>Window:</strong> Mon–Fri 9:00a–2:00p</li>
         </ul>
       </div>
     </section>
 
-    <!-- Product grid -->
-    <section>
-      <h2 style="margin:16px 0 10px; font-size:1.05rem">Baked goods — available for pre-order</h2>
-      <div class="grid" id="grid">
-        <!-- Item 1 -->
-        <article class="card" data-id="cinnamon-roll" data-name="Cinnamon Roll (6-pack)" data-price="18.00">
-          <img src="https://images.unsplash.com/photo-1541976076758-347942db1971?q=80&w=1200&auto=format&fit=crop" alt="Cinnamon rolls" />
-          <div class="meta">
-            <div class="name">Cinnamon Roll (6-pack)</div>
-            <div class="price">$18.00</div>
-            <div class="opts">
-              <div class="qty" data-for="cinnamon-roll">
-                <button class="minus" aria-label="decrease">−</button>
-                <span class="val">1</span>
-                <button class="plus" aria-label="increase">+</button>
-              </div>
-              <button class="add">Add</button>
+    <!-- THIS WEEK'S ITEMS -->
+    <span id="thisweeks" class="anchor"></span>
+    <h2 class="section-title">This week’s items — available for pre-order</h2>
+    <div class="grid">
+      <!-- Example weekly features -->
+      <article class="card" data-id="weekly-cinn6" data-name="Cinnamon Roll (6-pack)" data-price="18.00">
+        <img src="https://images.unsplash.com/photo-1541976076758-347942db1971?q=80&w=1200&auto=format&fit=crop" alt="Cinnamon rolls" />
+        <div class="meta">
+          <div class="name">Cinnamon Roll (6-pack)</div>
+          <div class="price">$18.00</div>
+          <div class="opts">
+            <div class="qty" data-for="weekly-cinn6">
+              <button class="minus" aria-label="decrease">−</button>
+              <span class="val">1</span>
+              <button class="plus" aria-label="increase">+</button>
             </div>
+            <button class="add">Add</button>
           </div>
-        </article>
+        </div>
+      </article>
 
-        <!-- Item 2 -->
-        <article class="card" data-id="sourdough" data-name="Country Sourdough" data-price="9.00">
-          <img src="https://images.unsplash.com/photo-1608198093002-ad4e005484ec?q=80&w=1200&auto=format&fit=crop" alt="Sourdough loaf" />
-          <div class="meta">
-            <div class="name">Country Sourdough</div>
-            <div class="price">$9.00</div>
-            <div class="opts">
-              <div class="qty" data-for="sourdough">
-                <button class="minus">−</button>
-                <span class="val">1</span>
-                <button class="plus">+</button>
-              </div>
-              <button class="add">Add</button>
+      <article class="card" data-id="weekly-sourdough" data-name="Country Sourdough" data-price="9.00">
+        <img src="https://images.unsplash.com/photo-1608198093002-ad4e005484ec?q=80&w=1200&auto=format&fit=crop" alt="Sourdough loaf" />
+        <div class="meta">
+          <div class="name">Country Sourdough</div>
+          <div class="price">$9.00</div>
+          <div class="opts">
+            <div class="qty" data-for="weekly-sourdough">
+              <button class="minus">−</button>
+              <span class="val">1</span>
+              <button class="plus">+</button>
             </div>
+            <button class="add">Add</button>
           </div>
-        </article>
+        </div>
+      </article>
+    </div>
 
-        <!-- Item 3 -->
-        <article class="card" data-id="choc-chip" data-name="Chocolate Chip Cookies (12)" data-price="16.00">
-          <img src="https://images.unsplash.com/photo-1541599188778-b4d7a3a3af81?q=80&w=1200&auto=format&fit=crop" alt="Cookies" />
-          <div class="meta">
-            <div class="name">Chocolate Chip Cookies (12)</div>
-            <div class="price">$16.00</div>
-            <div class="opts">
-              <div class="qty" data-for="choc-chip">
-                <button class="minus">−</button>
-                <span class="val">1</span>
-                <button class="plus">+</button>
-              </div>
-              <button class="add">Add</button>
-            </div>
+    <!-- Bagels -->
+    <span id="bagels" class="anchor"></span>
+    <h2 class="section-title">Bagels</h2>
+    <div class="grid">
+      <article class="card" data-id="bagels-plain6" data-name="Plain Bagels (6)" data-price="8.00">
+        <img src="https://images.unsplash.com/photo-1519676867240-f03562e64548?q=80&w=1200&auto=format&fit=crop" alt="Plain bagels" />
+        <div class="meta">
+          <div class="name">Plain Bagels (6)</div>
+          <div class="price">$8.00</div>
+          <div class="opts">
+            <div class="qty" data-for="bagels-plain6">
+              <button class="minus">−</button><span class="val">1</span><button class="plus">+</button>
+            </div><button class="add">Add</button>
           </div>
-        </article>
-      </div>
-    </section>
-  </div>
+        </div>
+      </article>
+      <article class="card" data-id="bagels-every6" data-name="Everything Bagels (6)" data-price="9.00">
+        <img src="https://images.unsplash.com/photo-1555507036-ab1f4038808a?q=80&w=1200&auto=format&fit=crop" alt="Everything bagels" />
+        <div class="meta">
+          <div class="name">Everything Bagels (6)</div>
+          <div class="price">$9.00</div>
+          <div class="opts">
+            <div class="qty" data-for="bagels-every6">
+              <button class="minus">−</button><span class="val">1</span><button class="plus">+</button>
+            </div><button class="add">Add</button>
+          </div>
+        </div>
+      </article>
+    </div>
+
+    <!-- Baked Bars -->
+    <span id="bakedbars" class="anchor"></span>
+    <h2 class="section-title">Baked Bars</h2>
+    <div class="grid">
+      <article class="card" data-id="bars-lemon" data-name="Lemon Bars (6)" data-price="12.00">
+        <img src="https://images.unsplash.com/photo-1599789197514-9682f6343686?q=80&w=1200&auto=format&fit=crop" alt="Lemon bars" />
+        <div class="meta">
+          <div class="name">Lemon Bars (6)</div>
+          <div class="price">$12.00</div>
+          <div class="opts">
+            <div class="qty" data-for="bars-lemon">
+              <button class="minus">−</button><span class="val">1</span><button class="plus">+</button>
+            </div><button class="add">Add</button>
+          </div>
+        </div>
+      </article>
+    </div>
+
+    <!-- Bread -->
+    <span id="bread" class="anchor"></span>
+    <h2 class="section-title">Bread</h2>
+    <div class="grid">
+      <article class="card" data-id="bread-sourdough" data-name="Country Sourdough" data-price="9.00">
+        <img src="https://images.unsplash.com/photo-1608198093002-ad4e005484ec?q=80&w=1200&auto=format&fit=crop" alt="Sourdough loaf" />
+        <div class="meta">
+          <div class="name">Country Sourdough</div>
+          <div class="price">$9.00</div>
+          <div class="opts">
+            <div class="qty" data-for="bread-sourdough">
+              <button class="minus">−</button><span class="val">1</span><button class="plus">+</button>
+            </div><button class="add">Add</button>
+          </div>
+        </div>
+      </article>
+    </div>
+
+    <!-- Brownies -->
+    <span id="brownies" class="anchor"></span>
+    <h2 class="section-title">Brownies</h2>
+    <div class="grid">
+      <article class="card" data-id="brownie-classic" data-name="Classic Brownies (6)" data-price="10.00">
+        <img src="https://images.unsplash.com/photo-1624353365286-3f8d63c4d0e0?q=80&w=1200&auto=format&fit=crop" alt="Brownies" />
+        <div class="meta">
+          <div class="name">Classic Brownies (6)</div>
+          <div class="price">$10.00</div>
+          <div class="opts">
+            <div class="qty" data-for="brownie-classic">
+              <button class="minus">−</button><span class="val">1</span><button class="plus">+</button>
+            </div><button class="add">Add</button>
+          </div>
+        </div>
+      </article>
+    </div>
+
+    <!-- Cinnamon Rolls -->
+    <span id="cinnamonrolls" class="anchor"></span>
+    <h2 class="section-title">Cinnamon Rolls</h2>
+    <div class="grid">
+      <article class="card" data-id="cinn6" data-name="Cinnamon Roll (6-pack)" data-price="18.00">
+        <img src="https://images.unsplash.com/photo-1541976076758-347942db1971?q=80&w=1200&auto=format&fit=crop" alt="Cinnamon rolls" />
+        <div class="meta">
+          <div class="name">Cinnamon Roll (6-pack)</div>
+          <div class="price">$18.00</div>
+          <div class="opts">
+            <div class="qty" data-for="cinn6">
+              <button class="minus">−</button><span class="val">1</span><button class="plus">+</button>
+            </div><button class="add">Add</button>
+          </div>
+        </div>
+      </article>
+    </div>
+
+    <!-- Cookies -->
+    <span id="cookies" class="anchor"></span>
+    <h2 class="section-title">Cookies</h2>
+    <div class="grid">
+      <article class="card" data-id="cookies-choc12" data-name="Chocolate Chip Cookies (12)" data-price="16.00">
+        <img src="https://images.unsplash.com/photo-1541599188778-b4d7a3a3af81?q=80&w=1200&auto=format&fit=crop" alt="Cookies" />
+        <div class="meta">
+          <div class="name">Chocolate Chip Cookies (12)</div>
+          <div class="price">$16.00</div>
+          <div class="opts">
+            <div class="qty" data-for="cookies-choc12">
+              <button class="minus">−</button><span class="val">1</span><button class="plus">+</button>
+            </div><button class="add">Add</button>
+          </div>
+        </div>
+      </article>
+    </div>
+
+    <!-- Muffins -->
+    <span id="muffins" class="anchor"></span>
+    <h2 class="section-title">Muffins</h2>
+    <div class="grid">
+      <article class="card" data-id="muffins-blue6" data-name="Blueberry Muffins (6)" data-price="12.00">
+        <img src="https://images.unsplash.com/photo-1509440159596-0249088772ff?q=80&w=1200&auto=format&fit=crop" alt="Blueberry muffins" />
+        <div class="meta">
+          <div class="name">Blueberry Muffins (6)</div>
+          <div class="price">$12.00</div>
+          <div class="opts">
+            <div class="qty" data-for="muffins-blue6">
+              <button class="minus">−</button><span class="val">1</span><button class="plus">+</button>
+            </div><button class="add">Add</button>
+          </div>
+        </div>
+      </article>
+    </div>
+
+    <!-- Pies -->
+    <span id="pies" class="anchor"></span>
+    <h2 class="section-title">Pies</h2>
+    <div class="grid">
+      <article class="card" data-id="pies-apple" data-name="Apple Pie" data-price="18.00">
+        <img src="https://images.unsplash.com/photo-1519681393784-d120267933ba?q=80&w=1200&auto=format&fit=crop" alt="Apple pie" />
+        <div class="meta">
+          <div class="name">Apple Pie</div>
+          <div class="price">$18.00</div>
+          <div class="opts">
+            <div class="qty" data-for="pies-apple">
+              <button class="minus">−</button><span class="val">1</span><button class="plus">+</button>
+            </div><button class="add">Add</button>
+          </div>
+        </div>
+      </article>
+    </div>
+
+    <!-- Scones -->
+    <span id="scones" class="anchor"></span>
+    <h2 class="section-title">Scones</h2>
+    <div class="grid">
+      <article class="card" data-id="scones-berry6" data-name="Mixed Berry Scones (6)" data-price="14.00">
+        <img src="https://images.unsplash.com/photo-1599785209796-9a9d37b04f3d?q=80&w=1200&auto=format&fit=crop" alt="Berry scones" />
+        <div class="meta">
+          <div class="name">Mixed Berry Scones (6)</div>
+          <div class="price">$14.00</div>
+          <div class="opts">
+            <div class="qty" data-for="scones-berry6">
+              <button class="minus">−</button><span class="val">1</span><button class="plus">+</button>
+            </div><button class="add">Add</button>
+          </div>
+        </div>
+      </article>
+    </div>
+
+  </div><!-- /wrap -->
 
   <!-- Sticky Cart Bar -->
   <div class="cartbar" id="cartBar">
@@ -302,7 +483,7 @@ document.querySelectorAll('.card').forEach(card=>{
     if(existing){ existing.qty += qty; } else { cart.set(id,{id,name,price,qty}); }
     valEl.textContent = 1;
     renderCart();
-    openDrawer(); // show checkout after add (nice on phones)
+    openDrawer();
   };
 });
 renderCart();
