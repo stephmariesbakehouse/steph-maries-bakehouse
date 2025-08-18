@@ -55,6 +55,10 @@
     h2.section-title{ font-size:2rem; }
   }
 
+  /* Utility (added) */
+  .center{ text-align:center; }
+  .twolines{ margin-bottom:2em; }
+
   /* Product grid/cards */
   .grid{display:grid; gap:12px; grid-template-columns:1fr;}
   @media (min-width:560px){ .grid{grid-template-columns:repeat(2,1fr);} }
@@ -161,7 +165,7 @@
     </section>
 
     <!-- WEEKLY SPECIAL -->
-    <h2 id="thisweeks-title" class="section-title">Weekly Special</h2>
+    <h2 id="thisweeks-title" class="section-title center">Weekly Special</h2>
     <div class="grid">
       <!-- One weekly feature -->
       <article class="card" data-id="weekly-cinn6" data-name="Cinnamon Roll (6-pack)" data-price="18.00">
@@ -184,6 +188,9 @@
 
     <!-- BIG GAP + BORDER before first category -->
     <div class="big-gap"></div>
+
+    <!-- BAKED GOODS (added, centered, with extra space before Bagels) -->
+    <h2 class="section-title center twolines">Baked Goods</h2>
 
     <!-- Bagels -->
     <h2 id="bagels-title" class="section-title">Bagels</h2>
