@@ -4,6 +4,7 @@
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
 <title>Steph Marie’s Bakehouse — Pre-Orders</title>
+<link rel="icon" href="logo.png" />
 <style>
   :root{
     --pink:#f6a5c0;
@@ -16,21 +17,23 @@
   html,body{margin:0; padding:0; background:var(--paper); color:var(--ink);}
   body{font:16px/1.5 system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;}
 
-  /* Header */
+  /* Header with centered logo */
   header{
-    padding:14px 16px; border-bottom:1px solid #eee; background:#fff;
+    padding:18px 0; border-bottom:1px solid #eee; background:#fff;
     position:sticky; top:0; z-index:10;
   }
-  .brand{display:flex; align-items:center; gap:12px}
-  .brand img{height:44px; width:auto; display:block}
-  h1{font-size:1.05rem; margin:0}
-  .tag{color:#666; font-size:.9rem}
+  .brand{
+    display:flex; justify-content:center; align-items:center;
+  }
+  .site-logo{
+    height:100px; /* adjust logo size here */
+    width:auto;
+    display:block;
+  }
 
   /* Layout */
-  .wrap{max-width:1100px; margin:0 auto; padding:14px 16px 90px;} /* bottom pad for cart bar */
-  .hero{
-    display:grid; gap:12px; margin-top:8px;
-  }
+  .wrap{max-width:1100px; margin:0 auto; padding:14px 16px 90px;}
+  .hero{display:grid; gap:12px; margin-top:8px;}
   .panel{
     background:#fff; border:1px solid #eee; border-radius:14px; padding:14px;
   }
@@ -41,9 +44,7 @@
   }
 
   /* Product grid */
-  .grid{display:grid; gap:12px; margin-top:14px;
-    grid-template-columns:1fr; /* mobile first */
-  }
+  .grid{display:grid; gap:12px; margin-top:14px; grid-template-columns:1fr;}
   @media (min-width:560px){ .grid{grid-template-columns:repeat(2,1fr);} }
   @media (min-width:900px){ .grid{grid-template-columns:repeat(3,1fr);} }
 
@@ -53,42 +54,28 @@
   .name{font-weight:700}
   .price{color:#444; margin-top:2px}
   .opts{display:flex; gap:10px; align-items:center; margin-top:10px}
-  .qty{
-    display:flex; align-items:center; gap:8px; border:1px solid #eee; border-radius:12px; padding:8px 10px;
-  }
-  .qty button{
-    border:0; background:#f5f5f5; width:36px; height:36px; border-radius:10px; cursor:pointer; font-size:18px;
-  }
-  .add{
-    margin-left:auto; border:0; background:var(--pink-deep); color:#fff;
-    padding:10px 14px; border-radius:12px; cursor:pointer; font-weight:700; min-width:110px;
-  }
+  .qty{display:flex; align-items:center; gap:8px; border:1px solid #eee; border-radius:12px; padding:8px 10px;}
+  .qty button{border:0; background:#f5f5f5; width:36px; height:36px; border-radius:10px; cursor:pointer; font-size:18px;}
+  .add{margin-left:auto; border:0; background:var(--pink-deep); color:#fff;
+    padding:10px 14px; border-radius:12px; cursor:pointer; font-weight:700; min-width:110px;}
 
-  /* Sticky Cart bar (mobile) */
-  .cartbar{
-    position:fixed; left:0; right:0; bottom:0; z-index:20;
+  /* Sticky Cart bar */
+  .cartbar{position:fixed; left:0; right:0; bottom:0; z-index:20;
     background:#fff; border-top:1px solid #eee;
     padding:10px 14px; display:flex; align-items:center; gap:12px;
-    box-shadow:0 -6px 20px #0001;
-  }
-  .cartbadge{
-    background:var(--pink); color:#000; font-weight:700; padding:6px 10px; border-radius:999px; min-width:34px; text-align:center;
-  }
+    box-shadow:0 -6px 20px #0001;}
+  .cartbadge{background:var(--pink); color:#000; font-weight:700; padding:6px 10px; border-radius:999px; min-width:34px; text-align:center;}
   .cartsum{flex:1; min-width:0}
   .cartsum .t{display:block; font-size:.9rem; color:#666; line-height:1.2}
   .cartsum .v{display:block; font-weight:800}
-  .checkout-btn{
-    border:0; background:var(--pink-deep); color:#fff; padding:12px 16px; border-radius:12px; font-weight:800; cursor:pointer;
-  }
+  .checkout-btn{border:0; background:var(--pink-deep); color:#fff; padding:12px 16px; border-radius:12px; font-weight:800; cursor:pointer;}
   .checkout-btn:disabled{opacity:.5}
 
   /* Drawer */
-  .drawer{
-    position:fixed; left:0; right:0; bottom:0; z-index:50;
+  .drawer{position:fixed; left:0; right:0; bottom:0; z-index:50;
     background:#fff; border-top-left-radius:16px; border-top-right-radius:16px;
     transform:translateY(100%); transition:transform .28s ease-out;
-    box-shadow:0 -14px 40px #0003; max-height:85vh; display:flex; flex-direction:column;
-  }
+    box-shadow:0 -14px 40px #0003; max-height:85vh; display:flex; flex-direction:column;}
   .drawer.open{transform:translateY(0)}
   .drawer .grab{width:48px; height:5px; background:#ddd; border-radius:999px; margin:8px auto 6px;}
   .drawer header{position:sticky; top:0; border-bottom:1px solid #eee}
@@ -101,9 +88,7 @@
   .ci button{width:32px; height:32px; border:0; background:#f5f5f5; border-radius:8px; font-size:18px; cursor:pointer}
   .totals{display:flex; justify-content:space-between; margin:10px 0; font-weight:800}
   .preorder{display:grid; gap:10px; margin-top:6px}
-  input, textarea, select{
-    width:100%; padding:12px 14px; border:1px solid #ddd; border-radius:12px; font:inherit; background:#fff;
-  }
+  input, textarea, select{width:100%; padding:12px 14px; border:1px solid #ddd; border-radius:12px; font:inherit; background:#fff;}
   label.small{font-size:.9rem; color:#666}
   .pay-buttons{display:flex; flex-wrap:wrap; gap:8px; margin-top:8px}
   .pay{border:1px solid #eee; background:#fafafa; padding:12px 14px; border-radius:12px; cursor:pointer; font-weight:700}
@@ -112,21 +97,12 @@
   .qr img{max-width:200px; height:auto; display:block; margin:0 auto 6px}
   .muted{color:#666; font-size:.9rem}
   .drawer-footer{padding:12px 14px 20px; border-top:1px solid #eee; color:#666; font-size:.9rem}
-
-  /* Desktop: show drawer by default trigger remains; cart bar still useful */
-  @media (min-width:900px){
-    .drawer{max-width:680px; margin:0 auto; border-top-left-radius:18px; border-top-right-radius:18px}
-  }
 </style>
 </head>
 <body>
   <header>
     <div class="brand">
-      <img src="logo.png" alt="Steph Marie’s Bakehouse Logo" />
-      <div>
-        <h1>Steph Marie’s Bakehouse</h1>
-        <div class="tag">Hand-made. Homestead spirit. Pre-order & pick up</div>
-      </div>
+      <img src="logo.png" alt="Steph Marie’s Bakehouse Logo" class="site-logo" />
     </div>
   </header>
 
@@ -208,8 +184,6 @@
             </div>
           </div>
         </article>
-
-        <!-- Add more items as needed -->
       </div>
     </section>
   </div>
@@ -246,7 +220,6 @@
       <div style="margin-top:10px">
         <label class="small">Pay now to confirm your order</label>
         <div class="pay-buttons">
-          <!-- Replace handles/links below -->
           <button class="pay primary" data-pay="venmo">Pay Venmo</button>
           <button class="pay" data-pay="cashapp">Pay Cash App</button>
           <button class="pay" data-pay="paypal">Pay PayPal</button>
@@ -271,8 +244,7 @@
 <script>
 /* ================ Basic cart ================ */
 const money = n => `$${n.toFixed(2)}`;
-const cart = new Map(); // id -> {id,name,price,qty}
-
+const cart = new Map();
 const cartItemsEl = document.getElementById('cartItems');
 const totalEl = document.getElementById('total');
 const cartBarTotal = document.getElementById('cartTotal');
@@ -330,7 +302,7 @@ document.querySelectorAll('.card').forEach(card=>{
     if(existing){ existing.qty += qty; } else { cart.set(id,{id,name,price,qty}); }
     valEl.textContent = 1;
     renderCart();
-    openDrawer(); // show checkout immediately on add (nice on phones)
+    openDrawer(); // show checkout after add (nice on phones)
   };
 });
 renderCart();
@@ -339,22 +311,17 @@ renderCart();
 const drawer = document.getElementById('drawer');
 document.getElementById('openCheckout').addEventListener('click', openDrawer);
 document.getElementById('closeDrawer').addEventListener('click', closeDrawer);
-
-// Close drawer on background swipe / ESC (basic)
 document.addEventListener('keydown', (e)=>{ if(e.key==='Escape') closeDrawer(); });
-
 function openDrawer(){ drawer.classList.add('open'); }
 function closeDrawer(){ drawer.classList.remove('open'); }
 
 /* ================ Payments ================ */
-// TODO: replace with your real handles/links
+// Replace with your real handles
 const VENMO_HANDLE = "StephMariesBakehouse"; // no @
 const CASHAPP_TAG  = "StephMariesBakehouse"; // no $
 const PAYPAL_ME    = "stephmariesbakehouse"; // paypal.me/<this>
 
-function totalAmount(){
-  let t=0; cart.forEach(it=>t+=it.price*it.qty); return Math.round(t*100)/100;
-}
+function totalAmount(){ let t=0; cart.forEach(it=>t+=it.price*it.qty); return Math.round(t*100)/100; }
 function orderSummary(){
   const items = [...cart.values()].map(i=>`${i.qty} × ${i.name}`).join(', ');
   const name = document.getElementById('custName').value.trim();
@@ -376,13 +343,11 @@ function showQR(src, note){
   if(!src){ qrBox.style.display='none'; return; }
   qrImg.src = src; qrNote.textContent = note || ''; qrBox.style.display = 'block';
 }
-
 // Quick QR via Google Charts
 function qrURL(text){
   const enc = encodeURIComponent(text);
   return `https://chart.googleapis.com/chart?cht=qr&chs=300x300&chl=${enc}`;
 }
-
 function onPay(kind){
   if(!requireBasics()) return;
   const total = totalAmount();
@@ -417,7 +382,6 @@ For now, please use Venmo / Cash App / PayPal above.`
     showQR('', '');
   }
 }
-
 document.querySelectorAll('.pay').forEach(btn=>{
   btn.addEventListener('click', ()=> onPay(btn.dataset.pay));
 });
