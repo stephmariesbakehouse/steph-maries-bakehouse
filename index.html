@@ -43,11 +43,15 @@
   .panel h2{margin:0 0 8px; font-size:1.05rem}
   .notice{background:#fff0f5; border:1px dashed var(--pink-deep); padding:10px 12px; border-radius:10px; font-size:.95rem;}
 
-  /* Section headings */
+  /* Section headings (bigger, and offset for sticky header when linking) */
   h2.section-title{
-    margin:18px 0 10px;
-    font-size:1.15rem; /* larger section titles */
-    line-height:1.25;
+    margin:22px 0 12px;
+    font-size:1.6rem;            /* larger titles on mobile */
+    line-height:1.2;
+    scroll-margin-top: 220px;    /* ensures title is visible after sticky header */
+  }
+  @media (min-width:900px){
+    h2.section-title{ font-size:2rem; }
   }
 
   /* Product grid/cards */
@@ -58,12 +62,18 @@
   .card{background:#fff; border:1px solid #eee; border-radius:14px; overflow:hidden; display:flex; flex-direction:column}
   .card img{width:100%; aspect-ratio: 4/3; object-fit:cover; display:block}
   .meta{padding:12px}
-  .name{font-weight:800; font-size:1.05rem;} /* larger product titles */
+  .name{font-weight:800; font-size:1.1rem;} /* slightly larger product titles */
   .price{color:#444; margin-top:2px}
   .opts{display:flex; gap:10px; align-items:center; margin-top:10px}
   .qty{display:flex; align-items:center; gap:8px; border:1px solid #eee; border-radius:12px; padding:8px 10px;}
   .qty button{border:0; background:#f5f5f5; width:36px; height:36px; border-radius:10px; cursor:pointer; font-size:18px;}
   .add{margin-left:auto; border:0; background:var(--pink-deep); color:#fff; padding:10px 14px; border-radius:12px; cursor:pointer; font-weight:700; min-width:110px;}
+
+  /* Big gap / divider after THIS WEEKS ITEMS */
+  .big-gap{
+    border-top:4px solid #111;
+    margin:40px 0 60px;  /* visual space before Bagels */
+  }
 
   /* Sticky Cart bar */
   .cartbar{position:fixed; left:0; right:0; bottom:0; z-index:25; background:#fff; border-top:1px solid #eee;
@@ -100,12 +110,6 @@
   .qr img{max-width:200px; height:auto; display:block; margin:0 auto 6px}
   .muted{color:#666; font-size:.9rem}
   .drawer-footer{padding:12px 14px 20px; border-top:1px solid #eee; color:#666; font-size:.9rem}
-
-  /* Category anchors offset so headings aren't hidden under sticky header */
-  .anchor{
-    position:relative; top:-90px; /* approximate header+nav height */
-    visibility:hidden;
-  }
 </style>
 </head>
 <body>
@@ -118,16 +122,16 @@
 
     <!-- Quick link categories -->
     <nav class="quicklinks">
-      <a class="primary" href="#thisweeks">THIS WEEKS ITEMS</a>
-      <a href="#bagels">Bagels</a>
-      <a href="#bakedbars">Baked Bars</a>
-      <a href="#bread">Bread</a>
-      <a href="#brownies">Brownies</a>
-      <a href="#cinnamonrolls">Cinnamon Rolls</a>
-      <a href="#cookies">Cookies</a>
-      <a href="#muffins">Muffins</a>
-      <a href="#pies">Pies</a>
-      <a href="#scones">Scones</a>
+      <a class="primary" href="#thisweeks-title">THIS WEEKS ITEMS</a>
+      <a href="#bagels-title">Bagels</a>
+      <a href="#bakedbars-title">Baked Bars</a>
+      <a href="#bread-title">Bread</a>
+      <a href="#brownies-title">Brownies</a>
+      <a href="#cinnamonrolls-title">Cinnamon Rolls</a>
+      <a href="#cookies-title">Cookies</a>
+      <a href="#muffins-title">Muffins</a>
+      <a href="#pies-title">Pies</a>
+      <a href="#scones-title">Scones</a>
     </nav>
   </header>
 
@@ -156,8 +160,7 @@
     </section>
 
     <!-- THIS WEEK'S ITEMS -->
-    <span id="thisweeks" class="anchor"></span>
-    <h2 class="section-title">This week’s items — available for pre-order</h2>
+    <h2 id="thisweeks-title" class="section-title">This week’s items — available for pre-order</h2>
     <div class="grid">
       <!-- Example weekly features -->
       <article class="card" data-id="weekly-cinn6" data-name="Cinnamon Roll (6-pack)" data-price="18.00">
@@ -193,9 +196,11 @@
       </article>
     </div>
 
+    <!-- BIG GAP + BORDER before first category -->
+    <div class="big-gap"></div>
+
     <!-- Bagels -->
-    <span id="bagels" class="anchor"></span>
-    <h2 class="section-title">Bagels</h2>
+    <h2 id="bagels-title" class="section-title">Bagels</h2>
     <div class="grid">
       <article class="card" data-id="bagels-plain6" data-name="Plain Bagels (6)" data-price="8.00">
         <img src="https://images.unsplash.com/photo-1519676867240-f03562e64548?q=80&w=1200&auto=format&fit=crop" alt="Plain bagels" />
@@ -224,8 +229,7 @@
     </div>
 
     <!-- Baked Bars -->
-    <span id="bakedbars" class="anchor"></span>
-    <h2 class="section-title">Baked Bars</h2>
+    <h2 id="bakedbars-title" class="section-title">Baked Bars</h2>
     <div class="grid">
       <article class="card" data-id="bars-lemon" data-name="Lemon Bars (6)" data-price="12.00">
         <img src="https://images.unsplash.com/photo-1599789197514-9682f6343686?q=80&w=1200&auto=format&fit=crop" alt="Lemon bars" />
@@ -242,8 +246,7 @@
     </div>
 
     <!-- Bread -->
-    <span id="bread" class="anchor"></span>
-    <h2 class="section-title">Bread</h2>
+    <h2 id="bread-title" class="section-title">Bread</h2>
     <div class="grid">
       <article class="card" data-id="bread-sourdough" data-name="Country Sourdough" data-price="9.00">
         <img src="https://images.unsplash.com/photo-1608198093002-ad4e005484ec?q=80&w=1200&auto=format&fit=crop" alt="Sourdough loaf" />
@@ -260,8 +263,7 @@
     </div>
 
     <!-- Brownies -->
-    <span id="brownies" class="anchor"></span>
-    <h2 class="section-title">Brownies</h2>
+    <h2 id="brownies-title" class="section-title">Brownies</h2>
     <div class="grid">
       <article class="card" data-id="brownie-classic" data-name="Classic Brownies (6)" data-price="10.00">
         <img src="https://images.unsplash.com/photo-1624353365286-3f8d63c4d0e0?q=80&w=1200&auto=format&fit=crop" alt="Brownies" />
@@ -278,8 +280,7 @@
     </div>
 
     <!-- Cinnamon Rolls -->
-    <span id="cinnamonrolls" class="anchor"></span>
-    <h2 class="section-title">Cinnamon Rolls</h2>
+    <h2 id="cinnamonrolls-title" class="section-title">Cinnamon Rolls</h2>
     <div class="grid">
       <article class="card" data-id="cinn6" data-name="Cinnamon Roll (6-pack)" data-price="18.00">
         <img src="https://images.unsplash.com/photo-1541976076758-347942db1971?q=80&w=1200&auto=format&fit=crop" alt="Cinnamon rolls" />
@@ -296,8 +297,7 @@
     </div>
 
     <!-- Cookies -->
-    <span id="cookies" class="anchor"></span>
-    <h2 class="section-title">Cookies</h2>
+    <h2 id="cookies-title" class="section-title">Cookies</h2>
     <div class="grid">
       <article class="card" data-id="cookies-choc12" data-name="Chocolate Chip Cookies (12)" data-price="16.00">
         <img src="https://images.unsplash.com/photo-1541599188778-b4d7a3a3af81?q=80&w=1200&auto=format&fit=crop" alt="Cookies" />
@@ -314,8 +314,7 @@
     </div>
 
     <!-- Muffins -->
-    <span id="muffins" class="anchor"></span>
-    <h2 class="section-title">Muffins</h2>
+    <h2 id="muffins-title" class="section-title">Muffins</h2>
     <div class="grid">
       <article class="card" data-id="muffins-blue6" data-name="Blueberry Muffins (6)" data-price="12.00">
         <img src="https://images.unsplash.com/photo-1509440159596-0249088772ff?q=80&w=1200&auto=format&fit=crop" alt="Blueberry muffins" />
@@ -332,8 +331,7 @@
     </div>
 
     <!-- Pies -->
-    <span id="pies" class="anchor"></span>
-    <h2 class="section-title">Pies</h2>
+    <h2 id="pies-title" class="section-title">Pies</h2>
     <div class="grid">
       <article class="card" data-id="pies-apple" data-name="Apple Pie" data-price="18.00">
         <img src="https://images.unsplash.com/photo-1519681393784-d120267933ba?q=80&w=1200&auto=format&fit=crop" alt="Apple pie" />
@@ -350,8 +348,7 @@
     </div>
 
     <!-- Scones -->
-    <span id="scones" class="anchor"></span>
-    <h2 class="section-title">Scones</h2>
+    <h2 id="scones-title" class="section-title">Scones</h2>
     <div class="grid">
       <article class="card" data-id="scones-berry6" data-name="Mixed Berry Scones (6)" data-price="14.00">
         <img src="https://images.unsplash.com/photo-1599785209796-9a9d37b04f3d?q=80&w=1200&auto=format&fit=crop" alt="Berry scones" />
