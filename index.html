@@ -38,8 +38,9 @@
 
   /* Layout */
   .wrap{max-width:1100px; margin:0 auto; padding:14px 16px 110px;}
-  .hero{display:grid; gap:12px; margin-top:8px;}
+  .hero{display:grid; gap:12px; margin-top:8px; margin-bottom:30px;} /* added larger break below hero */
   .panel{background:#fff; border:1px solid #eee; border-radius:14px; padding:14px;}
+  .panel.outlined{border:2px solid var(--ink);} /* stronger defined border for the two panels */
   .panel h2{margin:0 0 8px; font-size:1.05rem}
   .notice{background:#fff0f5; border:1px dashed var(--pink-deep); padding:10px 12px; border-radius:10px; font-size:.95rem;}
 
@@ -138,7 +139,7 @@
   <div class="wrap">
     <!-- Info panels -->
     <section class="hero">
-      <div class="panel">
+      <div class="panel outlined">
         <h2>How pre-orders work</h2>
         <ol style="margin:0; padding-left:18px">
           <li>Add items to your cart</li>
@@ -150,7 +151,7 @@
           Use PayPal/Venmo/Cash App now; we can add Apple Pay later without changing your layout.
         </p>
       </div>
-      <div class="panel">
+      <div class="panel outlined">
         <h2>This week’s pickup</h2>
         <ul style="margin:8px 0 0; padding-left:18px">
           <li><strong>Location:</strong> 3820 47th Ave NE, Tacoma, WA 98422</li>
@@ -160,9 +161,9 @@
     </section>
 
     <!-- THIS WEEK'S ITEMS -->
-    <h2 id="thisweeks-title" class="section-title">This week’s items — available for pre-order</h2>
+    <h2 id="thisweeks-title" class="section-title">Weekly Special</h2>
     <div class="grid">
-      <!-- Example weekly features -->
+      <!-- One weekly feature -->
       <article class="card" data-id="weekly-cinn6" data-name="Cinnamon Roll (6-pack)" data-price="18.00">
         <img src="https://images.unsplash.com/photo-1541976076758-347942db1971?q=80&w=1200&auto=format&fit=crop" alt="Cinnamon rolls" />
         <div class="meta">
@@ -173,22 +174,6 @@
               <button class="minus" aria-label="decrease">−</button>
               <span class="val">1</span>
               <button class="plus" aria-label="increase">+</button>
-            </div>
-            <button class="add">Add</button>
-          </div>
-        </div>
-      </article>
-
-      <article class="card" data-id="weekly-sourdough" data-name="Country Sourdough" data-price="9.00">
-        <img src="https://images.unsplash.com/photo-1608198093002-ad4e005484ec?q=80&w=1200&auto=format&fit=crop" alt="Sourdough loaf" />
-        <div class="meta">
-          <div class="name">Country Sourdough</div>
-          <div class="price">$9.00</div>
-          <div class="opts">
-            <div class="qty" data-for="weekly-sourdough">
-              <button class="minus">−</button>
-              <span class="val">1</span>
-              <button class="plus">+</button>
             </div>
             <button class="add">Add</button>
           </div>
