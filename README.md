@@ -17,3 +17,22 @@ Customers can browse a gallery of baked goods, place pre-orders, and pay through
 ## 🚀 Deployment
 This site is deployed via **GitHub Pages**.  
 Live URL (after Pages is enabled):  
+
+
+---
+
+## 📂 Structure
+- `index.html` → Main site page  
+- `assets/` → Product images & logos  
+- `README.md` → Repo overview (this file)  
+
+---
+
+## 📌 Notes
+- Replace placeholder payment handles with your own (Venmo, Cash App, PayPal).  
+- Apple Pay will require Stripe or Square integration — can be added later.  
+- Images can be updated anytime in the `/assets` folder.  
+
+---
+
+💡 *Steph Marie’s Bakehouse — Hand-made. Homestead spirit. Pre-order & pick up.*
