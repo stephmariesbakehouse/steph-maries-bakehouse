@@ -1,6 +1,6 @@
 {
-  "name": "Steph Marie's Bakehouse",
-  "short_name": "Bakehouse",
+  "name": "Steph Marie's Bakehouse — Pre-Orders",
+  "short_name": "Steph Marie's Bakehouse",
   "icons": [
     {
       "src": "favicon-192x192.png",
@@ -20,5 +20,7 @@
   ],
   "theme_color": "#ffffff",
   "background_color": "#ffffff",
-  "display": "standalone"
+  "display": "standalone",
+  "start_url": "/",
+  "scope": "/"
 }
